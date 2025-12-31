@@ -4,11 +4,13 @@
   --ocean-secondary: #F59E0B;
   --ocean-error: #EF4444;
 
+  /* Minimal semantic tokens used across the app */
   --bg-primary: #f9fafb;
   --bg-secondary: #ffffff;
   --text-primary: #111827;
   --text-muted: #6b7280;
   --border-color: #e5e7eb;
+  --link-color: var(--ocean-primary);
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -19,17 +21,50 @@
   --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.25);
 }
 
+/* Requested theme classes (applied on documentElement). */
+.theme-light {
+  --bg-primary: #f9fafb;
+  --bg-secondary: #ffffff;
+  --text-primary: #111827;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --link-color: var(--ocean-primary);
+}
+
+.theme-dark {
+  --bg-primary: #0b1220;
+  --bg-secondary: #0f172a;
+  --text-primary: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-color: rgba(255, 255, 255, 0.12);
+  --link-color: #93c5fd;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.45);
+
+  --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+
+/* Backwards compatibility: existing selectors using data-theme keep working. */
 [data-theme="dark"] {
   --bg-primary: #0b1220;
   --bg-secondary: #0f172a;
   --text-primary: #e5e7eb;
   --text-muted: #9ca3af;
   --border-color: rgba(255, 255, 255, 0.12);
+  --link-color: #93c5fd;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
   --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.45);
 
   --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+
+/* Smooth transitions when theme variables change. */
+html,
+body,
+.App {
+  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease;
 }
 
 .App {
@@ -428,7 +463,7 @@
 }
 
 .link {
-  color: var(--ocean-primary);
+  color: var(--link-color);
   text-decoration: none;
   font-weight: 800;
 }

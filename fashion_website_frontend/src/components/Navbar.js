@@ -68,10 +68,15 @@ export default function Navbar({ theme, onToggleTheme }) {
           <button
             className="theme-toggle theme-toggle--nav"
             onClick={onToggleTheme}
-            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
             type="button"
+            aria-pressed={theme === 'dark'}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
-            {theme === 'light' ? 'Dark' : 'Light'}
+            <span aria-hidden="true" style={{ display: 'inline-flex', gap: 8, alignItems: 'center' }}>
+              <span>{theme === 'dark' ? 'Light' : 'Dark'}</span>
+              <span style={{ fontSize: 14 }}>{theme === 'dark' ? '☀︎' : '☾'}</span>
+            </span>
           </button>
         </div>
       </div>
